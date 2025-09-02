@@ -12,6 +12,7 @@ import { Loader } from "lucide-react";
 import { Toaster } from "react-hot-toast";
 import { useThemeStore } from "./store/useThemeStore";
 
+
 const App = () => {
   const { authUser, checkAuth, isCheckingAuth, onlineUsers } = useAuthStore();
   const { theme } = useThemeStore();
@@ -33,7 +34,7 @@ const App = () => {
 
   return (
     <div className="min-h-screen flex flex-col" data-theme={theme}>
-      {/* <NavbarMenu /> */}
+      
       <Navbar />
       <Routes>
         <Route

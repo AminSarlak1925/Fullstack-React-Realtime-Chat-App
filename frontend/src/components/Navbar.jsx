@@ -1,10 +1,21 @@
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore";
 import { LogOut, MessageSquare, Settings, User } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const { logout, authUser } = useAuthStore();
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleSettingsClick = () => {
+    if (location.pathname === "/settings") {
+      navigate("/");
+    } else {
+      navigate("/settings");
+    }
+  };
   return (
     <header className="bg-base-100 border-b border-base-300 fixed w-full top-0 z-40 backdrop-blur-lg bg-base-100/80">
       <div className="container mx-auto px-4 h-16">
@@ -19,13 +30,13 @@ const Navbar = () => {
             <h1 className="text-lg font-bold">Chatty</h1>
           </Link>
           <div className="flex items-center gap-2">
-            <Link
-              to={"/settings"}
-              className={`btn btn-sm gap-2 translation-colors`}
+            <button
+              className="btn btn-sm gap-2 transition-colors rounded-md"
+              onClick={handleSettingsClick}
             >
               <Settings className="w-4 h-4" />
               <span className="hidden sm:inline">Settings</span>
-            </Link>
+            </button>
 
             {authUser && (
               <>
